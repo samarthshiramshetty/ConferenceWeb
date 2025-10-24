@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +12,34 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: Georgia, 'Times New Roman', Times, serif;
             line-height: 1.6;
             color: #333;
-            background: #fff;
+            background: #f8f9fa;
             overflow-x: hidden;
+        }
+        
+        /* Smooth animations */
+        * {
+            transition: all 0.3s ease;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #4a9d9c;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3d8584;
         }
         
         /* Header and Navigation */
@@ -24,79 +47,91 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .header.scrolled {
             background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 30px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
         }
         
-        .logo-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
         
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo-circle {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo-circle:hover {
-            transform: scale(1.1);
-        }
-        
-        .logo-text {
-            font-size: 28px;
-            font-weight: bold;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #1a7a7e 0%, #2eb3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .top-bar {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
         }
         
         .register-btn {
-            background: linear-gradient(135deg, #1a7a7e 0%, #2eb3b8 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
+            background: #fff;
+            color: #1e3a8a;
+            padding: 6px 25px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9em;
+            display: inline-block;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(26, 122, 126, 0.3);
+            box-shadow: 0 2px 10px rgba(255,255,255,0.2);
         }
         
         .register-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(26, 122, 126, 0.4);
+            background: #f0f4ff;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
         }
         
         nav {
             background: white;
-            border-top: 1px solid #f0f0f0;
+            padding: 18px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 0 20px;
+        }
+        
+        .nav-logo img {
+            height: 45px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-logo-text {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1e3a8a;
+            letter-spacing: -0.5px;
         }
         
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: center;
-            gap: 50px;
-            padding: 15px 0;
+            gap: 40px;
+            padding: 0 20px;
         }
         
         nav a {
@@ -104,244 +139,216 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95em;
-            padding: 8px 15px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             position: relative;
+            padding: 5px 0;
         }
         
         nav a::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 50%;
+            left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(135deg, #1a7a7e 0%, #2eb3b8 100%);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+            background: linear-gradient(90deg, #4a9d9c, #3b82f6);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #4a9d9c;
         }
         
         nav a:hover::after {
             width: 100%;
         }
         
-        nav a:hover {
-            color: #1a7a7e;
-        }
-        
-        /* Hero Section - Split Layout */
-        .hero-section {
-            margin-top: 110px;
-            min-height: 90vh;
-            display: flex;
+        /* Banner Section */
+        .banner {
+            margin-top: 100px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 0;
+            color: #333;
             position: relative;
             overflow: hidden;
         }
         
-        .hero-left {
-            flex: 1;
-            padding: 80px 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero-left::before {
+        .banner::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(26, 122, 126, 0.05) 0%, rgba(46, 179, 184, 0.05) 100%);
-            pointer-events: none;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%234a9d9c" fill-opacity="0.03" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.5;
         }
         
-        .hero-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, #1a7a7e 0%, #2eb3b8 100%);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.9em;
-            font-weight: 600;
-            margin-bottom: 30px;
-            width: fit-content;
-            letter-spacing: 0.5px;
-            animation: fadeInDown 0.8s ease;
+        .banner-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            min-height: 650px;
+            position: relative;
+            z-index: 1;
         }
         
-        @keyframes fadeInDown {
+        .banner-text {
+            padding: 80px 80px 80px 60px;
+            animation: fadeInLeft 0.8s ease;
+        }
+        
+        @keyframes fadeInLeft {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateX(-50px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateX(0);
             }
         }
         
-        .hero-title {
-            font-size: 3.5em;
+        .banner-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #4a9d9c 0%, #3b82f6 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 15px rgba(74, 157, 156, 0.3);
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(74, 157, 156, 0.3);
+            }
+            50% {
+                box-shadow: 0 6px 25px rgba(74, 157, 156, 0.5);
+            }
+        }
+        
+        .banner h1 {
+            font-size: 3.2em;
+            margin-bottom: 35px;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 30px;
             color: #1a1a1a;
-            animation: fadeInUp 0.8s ease 0.2s both;
+            letter-spacing: -1px;
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .hero-title .highlight {
-            background: linear-gradient(135deg, #1a7a7e 0%, #2eb3b8 100%);
+        .banner h1 .highlight {
+            color: #4a9d9c;
+            background: linear-gradient(135deg, #4a9d9c 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .hero-description {
-            font-size: 1.3em;
-            color: #666;
-            margin-bottom: 40px;
-            line-height: 1.8;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-        
-        .hero-meta {
+        .banner-info {
             display: flex;
-            gap: 40px;
-            margin-bottom: 40px;
-            animation: fadeInUp 0.8s ease 0.6s both;
+            gap: 45px;
+            margin-bottom: 45px;
+            font-size: 1.05em;
         }
         
-        .meta-item {
+        .info-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #555;
+            gap: 12px;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
         }
         
-        .meta-icon {
-            font-size: 1.5em;
+        .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.12);
         }
         
-        .hero-buttons {
+        .info-icon {
+            font-size: 1.4em;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .banner-buttons {
             display: flex;
             gap: 20px;
-            animation: fadeInUp 0.8s ease 0.8s both;
+            margin-bottom: 60px;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #1a7a7e 0%, #2eb3b8 100%);
+            background: linear-gradient(135deg, #4a9d9c 0%, #3b82f6 100%);
             color: white;
             padding: 16px 40px;
-            border-radius: 50px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1em;
+            font-size: 1.05em;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(26, 122, 126, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(26, 122, 126, 0.4);
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: #1a7a7e;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-            border: 2px solid #1a7a7e;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: #1a7a7e;
-            color: white;
-            transform: translateY(-3px);
-        }
-        
-        .hero-right {
-            flex: 1;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(74, 157, 156, 0.3);
             position: relative;
             overflow: hidden;
         }
         
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            animation: zoomIn 1.2s ease;
-        }
-        
-        @keyframes zoomIn {
-            from {
-                transform: scale(1.1);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        .hero-overlay {
+        .btn-primary::before {
+            content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(26, 122, 126, 0.3) 0%, rgba(46, 179, 184, 0.3) 100%);
-            mix-blend-mode: multiply;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
         }
         
-        /* Floating Stats */
-        .floating-stats {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 30px rgba(74, 157, 156, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #4a9d9c;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            border: 2px solid #4a9d9c;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .btn-secondary:hover {
+            background: #4a9d9c;
+            color: white;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 25px rgba(74, 157, 156, 0.3);
+        }
+        
+        .banner-stats {
             display: flex;
-            gap: 30px;
-            z-index: 3;
+            gap: 25px;
+            animation: fadeInUp 1s ease 0.3s both;
         }
         
-        .stat-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 25px 35px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            text-align: center;
-            animation: floatUp 0.8s ease both;
-        }
-        
-        .stat-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        .stat-card:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-        
-        @keyframes floatUp {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -352,655 +359,390 @@
             }
         }
         
+        .stat-box {
+            background: white;
+            padding: 28px 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(74, 157, 156, 0.1);
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(74, 157, 156, 0.2);
+            border-color: rgba(74, 157, 156, 0.3);
+        }
+        
         .stat-number {
-            font-size: 2.5em;
+            font-size: 2.8em;
             font-weight: 700;
-            background: linear-gradient(135deg, #1a7a7e 0%, #2eb3b8 100%);
+            background: linear-gradient(135deg, #4a9d9c 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
         }
         
         .stat-label {
+            font-size: 1em;
             color: #666;
-            font-size: 0.9em;
             font-weight: 500;
+            letter-spacing: 0.5px;
         }
         
-        /* Overview Section - Professional Design */
-        .overview-section {
-            padding: 120px 60px;
-            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+        .banner-image {
+            height: 650px;
+            overflow: hidden;
             position: relative;
+            border-radius: 0 0 0 50px;
+            box-shadow: -10px 10px 40px rgba(0,0,0,0.15);
+            animation: fadeInRight 0.8s ease;
         }
         
-        .overview-section::before {
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .banner-image::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #2eb3b8, transparent);
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(74, 157, 156, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            z-index: 1;
+            pointer-events: none;
         }
         
-        .section-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 80px;
+        .banner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .section-subtitle {
-            color: #2eb3b8;
-            font-weight: 600;
-            font-size: 1em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+        .banner-image:hover img {
+            transform: scale(1.05);
         }
         
-        .section-title {
-            font-size: 3em;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 25px;
-            line-height: 1.3;
-        }
-        
-        .section-description {
-            font-size: 1.2em;
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .overview-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto 60px;
-        }
-        
-        .overview-card {
+        .hosts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 50px 20px;
             background: white;
-            padding: 40px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .host-logo {
+            background: white;
+            padding: 25px 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            height: 90px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .host-logo:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        
+        @media (max-width: 968px) {
+            .banner-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .banner-text {
+                padding: 50px 30px;
+            }
+            
+            .banner-image {
+                height: 450px;
+                border-radius: 0;
+            }
+            
+            .banner h1 {
+                font-size: 2.2em;
+            }
+            
+            .banner-stats {
+                flex-direction: column;
+            }
+            
+            .banner-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 80px 20px;
+            scroll-margin-top: 100px;
+            position: relative;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(74, 157, 156, 0.2), transparent);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            font-size: 2.6em;
+            color: #1a1a1a;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -1px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #4a9d9c, #3b82f6);
+            border-radius: 2px;
+        }
+        
+        .overview-content {
+            line-height: 1.9;
+            font-size: 1.1em;
+            color: #555;
+            text-align: justify;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px 60px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(74, 157, 156, 0.1);
+        }
+        
+        .overview-content p {
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .overview-content p:hover {
+            color: #333;
+            transform: translateX(5px);
+        }
+        
+        /* Tracks Section - Center Aligned Grid */
+        .tracks-intro {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.15em;
+            color: #666;
+        }
+        
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .track-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
             transition: all 0.4s ease;
+            text-align: center;
+            border: 1px solid rgba(74, 157, 156, 0.1);
+            position: relative;
+        }
+        
+        .track-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(74, 157, 156, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+        
+        .track-card:hover::before {
+            opacity: 1;
+        }
+        
+        .track-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(74, 157, 156, 0.2);
+            border-color: rgba(74, 157, 156, 0.3);
+        }
+        
+        .track-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
             position: relative;
             overflow: hidden;
         }
         
-        .overview-card::before {
+        .track-image::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, var(--card-color) 0%, var(--card-color-light) 100%);
+            height: 60%;
+            background: linear-gradient(to top, rgba(30, 58, 138, 0.85), transparent);
+            transition: height 0.4s ease;
         }
         
-        .overview-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        .track-card:hover .track-image::after {
+            height: 80%;
         }
         
-        .overview-card:nth-child(1) {
-            --card-color: #1a7a7e;
-            --card-color-light: #2eb3b8;
-        }
-        
-        .overview-card:nth-child(2) {
-            --card-color: #5cb85c;
-            --card-color-light: #8fce8f;
-        }
-        
-        .overview-card:nth-child(3) {
-            --card-color: #ff8a3d;
-            --card-color-light: #ffb347;
-        }
-        
-        .card-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--card-color) 0%, var(--card-color-light) 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .card-title {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-        }
-        
-        .card-text {
-            color: #666;
-            line-height: 1.8;
-            font-size: 1.05em;
-        }
-        
-        .overview-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px;
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        .track-content {
+            padding: 30px;
             position: relative;
+            z-index: 1;
         }
         
-        .overview-content::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 30px;
-            right: 30px;
-            height: 4px;
-            background: linear-gradient(90deg, #1a7a7e, #2eb3b8, #5cb85c, #ff8a3d);
-            border-radius: 10px;
-        }
-        
-        .overview-text {
-            font-size: 1.15em;
-            line-height: 2;
-            color: #555;
-            margin-bottom: 30px;
-        }
-        
-        .overview-text strong {
-            color: #1a7a7e;
-            font-weight: 600;
-        }
-        
-        /* Hosted By Section */
-        .sponsors-section {
-            padding: 100px 60px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            text-align: center;
-        }
-        
-        .sponsors-title {
-            font-size: 2.5em;
+        .track-content h3 {
             color: #1a1a1a;
-            margin-bottom: 60px;
-            font-weight: 700;
-        }
-        
-        .sponsors-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 80px;
-            flex-wrap: wrap;
-        }
-        
-        .sponsor-logo {
-            background: white;
-            padding: 35px 45px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-        }
-        
-        .sponsor-logo:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-        
-        .yif-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .yif-box {
-            background: linear-gradient(135deg, #ff8a3d 0%, #e67325 100%);
-            color: white;
-            padding: 20px 25px;
-            font-weight: bold;
-            font-size: 2em;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(255, 138, 61, 0.3);
-        }
-        
-        .yif-text {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .yif-text .young-india {
+            margin-bottom: 20px;
             font-size: 1.4em;
-            color: #333;
-            font-weight: 400;
-            letter-spacing: 2px;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
         
-        .yif-text .foundation {
-            background: linear-gradient(135deg, #5cb85c 0%, #4a9a4a 100%);
-            color: white;
-            padding: 10px 25px;
-            font-size: 1.6em;
-            letter-spacing: 3px;
-            font-weight: 400;
-            margin-top: 8px;
-            border-radius: 5px;
-            box-shadow: 0 5px 20px rgba(92, 184, 92, 0.3);
+        .track-card:hover .track-content h3 {
+            color: #4a9d9c;
         }
         
-        .marwadi-container {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-        
-        .marwadi-shield {
-            background: linear-gradient(135deg, #1a7a7e 0%, #2eb3b8 100%);
-            padding: 15px 20px;
-            border-radius: 12px;
-            color: white;
-            font-size: 2.2em;
-            font-weight: bold;
-            box-shadow: 0 5px 20px rgba(26, 122, 126, 0.3);
-        }
-        
-        .marwadi-text {
+        .track-content ul {
+            list-style: none;
             text-align: left;
         }
         
-        .marwadi-name {
-            font-size: 2.2em;
-            color: #8b6f47;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        
-        .marwadi-subtitle {
-            font-size: 1em;
-            color: #666;
-            margin-top: 5px;
-        }
-        
-        .naac-badge {
-            background: linear-gradient(135deg, #d4af37 0%, #f4e4c1 50%, #d4af37 100%);
-            border: 3px solid #d4af37;
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #8b0000;
-            font-size: 1.5em;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-        }
-        
-        /* Call for Papers */
-        .cfp-section {
-            padding: 120px 60px;
-            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-        }
-        
-        .cfp-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto 60px;
-        }
-        
-        .cfp-card {
-            background: white;
-            padding: 45px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            border-top: 4px solid var(--card-color);
-        }
-        
-        .cfp-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-        
-        .cfp-card:nth-child(1) {
-            --card-color: #1a7a7e;
-        }
-        
-        .cfp-card:nth-child(2) {
-            --card-color: #5cb85c;
-        }
-        
-        .cfp-card:nth-child(3) {
-            --card-color: #ff8a3d;
-        }
-        
-        .cfp-card h3 {
-            color: var(--card-color);
-            margin-bottom: 20px;
-            font-size: 1.6em;
-            font-weight: 700;
-        }
-        
-        .cfp-card p {
-            color: #666;
-            line-height: 1.8;
-            font-size: 1.05em;
-        }
-        
-        .cfp-buttons {
-            display: flex;
-            gap: 25px;
-            justify-content: center;
-            margin-top: 60px;
-        }
-        
-        /* Tracks Section */
-        .tracks-section {
-            padding: 120px 60px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        }
-        
-        .tracks-container {
-            position: relative;
-            min-height: 900px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 60px auto;
-            perspective: 2000px;
-            perspective-origin: center center;
-            overflow: visible;
-            padding: 100px 20px;
-        }
-        
-        .tracks-container::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(26, 122, 126, 0.05) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-            z-index: 0;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.7; }
-        }
-        
-        .tracks-wheel {
-            position: relative;
-            width: 700px;
-            height: 700px;
-            transform-style: preserve-3d;
-            animation: rotateWheel 40s linear infinite;
-            transform: rotateX(0deg);
-        }
-        
-        @keyframes rotateWheel {
-            from { transform: rotateX(0deg) rotateY(0deg); }
-            to { transform: rotateX(0deg) rotateY(360deg); }
-        }
-        
-        .tracks-wheel:hover {
-            animation-play-state: paused;
-        }
-        
-        .track-hex {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, var(--track-color) 0%, var(--track-color-dark) 100%);
-            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            padding: 20px;
-            left: 50%;
-            top: 50%;
-            margin-left: -100px;
-            margin-top: -100px;
-            transform-style: preserve-3d;
-            backface-visibility: visible;
-        }
-        
-        .track-hex::before {
-            content: '';
-            position: absolute;
-            inset: 3px;
-            background: rgba(255,255,255,0.15);
-            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-        }
-        
-        .track-hex::after {
-            content: '';
-            position: absolute;
-            inset: -10px;
-            background: radial-gradient(circle, var(--track-color) 0%, transparent 70%);
-            opacity: 0.3;
-            filter: blur(20px);
-            z-index: -1;
-        }
-        
-        .track-hex:hover {
-            transform: var(--track-transform) scale(1.2) !important;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            z-index: 100;
-        }
-        
-        .track-hex:nth-child(1) {
-            --track-color: #1a7a7e;
-            --track-color-dark: #135d61;
-            --track-transform: rotateY(0deg) translateZ(280px);
-            transform: rotateY(0deg) translateZ(280px);
-        }
-        
-        .track-hex:nth-child(2) {
-            --track-color: #2eb3b8;
-            --track-color-dark: #229296;
-            --track-transform: rotateY(60deg) translateZ(280px);
-            transform: rotateY(60deg) translateZ(280px);
-        }
-        
-        .track-hex:nth-child(3) {
-            --track-color: #5cb85c;
-            --track-color-dark: #4a9a4a;
-            --track-transform: rotateY(120deg) translateZ(280px);
-            transform: rotateY(120deg) translateZ(280px);
-        }
-        
-        .track-hex:nth-child(4) {
-            --track-color: #ff8a3d;
-            --track-color-dark: #e67325;
-            --track-transform: rotateY(180deg) translateZ(280px);
-            transform: rotateY(180deg) translateZ(280px);
-        }
-        
-        .track-hex:nth-child(5) {
-            --track-color: #9b59b6;
-            --track-color-dark: #7d3c8b;
-            --track-transform: rotateY(240deg) translateZ(280px);
-            transform: rotateY(240deg) translateZ(280px);
-        }
-        
-        .track-hex:nth-child(6) {
-            --track-color: #e74c3c;
-            --track-color-dark: #c0392b;
-            --track-transform: rotateY(300deg) translateZ(280px);
-            transform: rotateY(300deg) translateZ(280px);
-        }
-        
-        .track-icon {
-            font-size: 2.8em;
-            color: white;
-            margin-bottom: 10px;
-            filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4));
-            position: relative;
-            z-index: 2;
-        }
-        
-        .track-label {
-            color: white;
-            font-weight: 600;
-            font-size: 0.95em;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.3;
-            max-width: 160px;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .center-hub {
-            display: none;
-        }
-        
-        .track-details {
-            position: absolute;
-            bottom: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 800px;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            z-index: 200;
-        }
-        
-        .track-details.active {
-            opacity: 1;
-            visibility: visible;
-            bottom: -220px;
-        }
-        
-        .track-details h4 {
-            color: #1a7a7e;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-        
-        .track-details ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .track-details li {
+        .track-content li {
             padding: 8px 0;
             padding-left: 25px;
             position: relative;
             color: #666;
-        }
-        
-        .track-details li::before {
-            content: '→';
-            color: #2eb3b8;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        
-        /* Schedule */
-        .schedule-section {
-            padding: 120px 60px;
-            background: white;
-        }
-        
-        .timeline-line {
-            position: absolute;
-            left: 50px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, #1a7a7e, #2eb3b8);
-        }
-        
-        .timeline-item {
-            display: flex;
-            margin-bottom: 80px;
-            position: relative;
-        }
-        
-        .timeline-badge {
-            background: linear-gradient(135deg, #1a7a7e 0%, #2eb3b8 100%);
-            color: white;
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            position: relative;
-            z-index: 2;
-            flex-shrink: 0;
-            box-shadow: 0 5px 20px rgba(26, 122, 126, 0.3);
-        }
-        
-        .timeline-content {
-            margin-left: 50px;
-            background: white;
-            padding: 45px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            flex: 1;
-            border-left: 4px solid #2eb3b8;
+            font-size: 1em;
             transition: all 0.3s ease;
         }
         
-        .timeline-content:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        .track-content li:hover {
+            color: #4a9d9c;
+            transform: translateX(5px);
         }
         
-        .timeline-content h3 {
-            color: #1a7a7e;
-            font-size: 2em;
-            margin-bottom: 15px;
+        .track-content li::before {
+            content: '◆';
+            color: #4a9d9c;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
         }
         
-        .timeline-content .day-subtitle {
-            color: #666;
-            font-size: 1.2em;
+        .track-content li:hover::before {
+            transform: scale(1.3);
+        }
+        
+        /* Schedule Timeline Section */
+        .schedule-timeline {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .day-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(74, 157, 156, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(74, 157, 156, 0.15);
+        }
+        
+        .day-header {
+            background: linear-gradient(135deg, #4a9d9c 0%, #3b82f6 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
             margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(74, 157, 156, 0.3);
+        }
+        
+        .day-header h3 {
+            font-size: 1.6em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .day-header p {
+            opacity: 0.95;
             font-style: italic;
+            font-size: 1.05em;
         }
         
         .schedule-list {
             list-style: none;
-            padding: 0;
         }
         
         .schedule-list li {
             display: flex;
             padding: 20px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 2px solid #f0f0f0;
             transition: all 0.3s ease;
         }
         
         .schedule-list li:hover {
-            background: #f8f9fa;
-            padding-left: 10px;
+            background: linear-gradient(90deg, rgba(74, 157, 156, 0.05), transparent);
+            padding-left: 15px;
+            border-left: 4px solid #4a9d9c;
         }
         
         .schedule-list li:last-child {
@@ -1008,17 +750,17 @@
         }
         
         .time-slot {
-            flex: 0 0 140px;
-            font-weight: 600;
-            color: #1a7a7e;
-            font-size: 1.1em;
+            flex: 0 0 160px;
+            font-weight: 700;
+            color: #4a9d9c;
+            font-size: 1.05em;
         }
         
         .session-details h4 {
-            color: #333;
+            color: #1a1a1a;
             margin-bottom: 10px;
-            font-size: 1.1em;
-            font-weight: 600;
+            font-size: 1.15em;
+            font-weight: 700;
         }
         
         .session-tracks {
@@ -1028,173 +770,250 @@
         }
         
         .session-tracks li {
-            padding: 5px 0;
+            padding: 6px 0;
             color: #666;
             font-size: 0.95em;
             border: none;
         }
         
         .session-tracks li:hover {
-            background: transparent;
+            background: none;
             padding-left: 0;
+            border-left: none;
+            color: #4a9d9c;
         }
         
         .session-tracks li::before {
-            content: '→ ';
-            color: #2eb3b8;
+            content: '◆ ';
+            color: #4a9d9c;
             font-weight: bold;
+        }
+        
+        /* Call for Papers */
+        .cfp-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .cfp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .cfp-item h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .cfp-item p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        .cfp-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            background: #1e3a8a;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid #1e3a8a;
+        }
+        
+        .btn-outline:hover {
+            background: #1e3a8a;
+            color: white;
+        }
+        
+        /* Sponsors Section at Bottom */
+        .sponsors-bottom {
+            padding: 60px 20px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .sponsors-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .sponsors-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .sponsor-logo {
+            background: white;
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
         }
         
         /* Footer */
         footer {
-            background: linear-gradient(135deg, #1a7a7e 0%, #135d61 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
-            padding: 80px 60px 40px;
-            text-align: center;
+            padding: 60px 20px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4a9d9c, #3b82f6, #4a9d9c);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         .footer-content {
-            max-width: 900px;
-            margin: 0 auto 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
         }
         
-        .footer-about h3 {
-            margin-bottom: 25px;
-            font-size: 1.8em;
+        .footer-section h3 {
+            color: #4a9d9c;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
         
-        .footer-about p {
-            font-size: 1.15em;
-            line-height: 1.9;
-            opacity: 0.95;
+        .footer-section p, .footer-section ul {
+            font-size: 1em;
+            opacity: 0.9;
+            line-height: 1.8;
+            color: #ccc;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section p:hover {
+            opacity: 1;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 18px;
+        }
+        
+        .footer-section a::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #4a9d9c;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            opacity: 1;
+            color: #4a9d9c;
+            transform: translateX(8px);
+        }
+        
+        .footer-section a:hover::before {
+            opacity: 1;
         }
         
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 25px;
-            margin-top: 40px;
-            opacity: 0.9;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 30px;
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.95em;
         }
         
         /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-section {
-                flex-direction: column;
-            }
-            
-            .hero-right {
-                min-height: 400px;
-            }
-            
-            .overview-grid,
-            .cfp-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .floating-stats {
+        @media (max-width: 768px) {
+            nav {
                 flex-direction: column;
                 gap: 15px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .logo-section {
-                padding: 15px 20px;
             }
             
             nav ul {
                 gap: 20px;
                 flex-wrap: wrap;
-                padding: 15px;
+                justify-content: center;
             }
             
-            .hero-left {
-                padding: 40px 30px;
-            }
-            
-            .hero-title {
-                font-size: 2.2em;
-            }
-            
-            .hero-description {
-                font-size: 1.1em;
-            }
-            
-            .hero-meta {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .section-title {
+            .banner h1 {
                 font-size: 2em;
             }
             
-            .overview-section,
-            .cfp-section,
-            .tracks-section,
-            .schedule-section,
-            .sponsors-section {
-                padding: 60px 30px;
+            .tracks-grid {
+                grid-template-columns: 1fr;
             }
             
-            .tracks-container {
-                min-height: 600px;
-                perspective: 1200px;
-            }
-            
-            .tracks-wheel {
-                width: 400px;
-                height: 400px;
-            }
-            
-            .track-hex {
-                width: 140px;
-                height: 140px;
-                margin-left: -70px;
-                margin-top: -70px;
-            }
-            
-            .track-hex:nth-child(1) {
-                transform: rotateY(0deg) translateZ(180px);
-                --track-transform: rotateY(0deg) translateZ(180px);
-            }
-            
-            .track-hex:nth-child(2) {
-                transform: rotateY(60deg) translateZ(180px);
-                --track-transform: rotateY(60deg) translateZ(180px);
-            }
-            
-            .track-hex:nth-child(3) {
-                transform: rotateY(120deg) translateZ(180px);
-                --track-transform: rotateY(120deg) translateZ(180px);
-            }
-            
-            .track-hex:nth-child(4) {
-                transform: rotateY(180deg) translateZ(180px);
-                --track-transform: rotateY(180deg) translateZ(180px);
-            }
-            
-            .track-hex:nth-child(5) {
-                transform: rotateY(240deg) translateZ(180px);
-                --track-transform: rotateY(240deg) translateZ(180px);
-            }
-            
-            .track-hex:nth-child(6) {
-                transform: rotateY(300deg) translateZ(180px);
-                --track-transform: rotateY(300deg) translateZ(180px);
-            }
-            
-            .timeline-content {
-                margin-left: 20px;
-                padding: 25px;
-            }
-            
-            .schedule-list li {
+            .hosts {
                 flex-direction: column;
+            }
+            
+            .sponsors-grid {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1202,294 +1021,199 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="logo-section">
-            <div class="logo">
-                <span class="logo-circle" style="background: #ff6b35;"></span>
-                <span class="logo-circle" style="background: #f7b731;"></span>
-                <span class="logo-circle" style="background: #5cb85c;"></span>
-                <span class="logo-circle" style="background: #1a7a7e;"></span>
-                <span class="logo-text">CYP</span>
-            </div>
-            <a href="#" class="register-btn">Register Now</a>
+        <div class="top-bar">
+            <a href="https://forms.typeform.com/to/ABC123" target="_blank" class="register-btn">Register Now</a>
         </div>
         <nav>
+            <div class="nav-logo">
+                <span class="nav-logo-text">CYP</span>
+            </div>
             <ul>
                 <li><a href="#overview">Overview</a></li>
-                <li><a href="#call-for-papers">Call for Papers</a></li>
                 <li><a href="#tracks">Tracks</a></li>
                 <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#call-for-papers">Call for Papers</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
     
-    <!-- Hero Section - Split Layout -->
-    <section class="hero-section">
-        <div class="hero-left">
-            <div class="hero-tag">Youth & Democracy Conference</div>
-            <h1 class="hero-title">
-                Where youth meets power and<span class="highlight"> research drives real change.</span>
-            </h1>
-            <div class="hero-meta">
-                <div class="meta-item">
-                    <span class="meta-icon">📅</span>
-                    <span>January 8–9, 2025</span>
+    <!-- Banner -->
+    <section class="banner">
+        <div class="banner-content">
+            <div class="banner-text">
+                <div class="banner-tag">Youth & Democracy Conference</div>
+                <h1>Where youth meets power and <span class="highlight">research drives real change.</span></h1>
+                <div class="banner-info">
+                    <div class="info-item">
+                        <span class="info-icon">📅</span>
+                        <span>January 8–9, 2025</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <span>Marwadi University, Rajkot</span>
+                    </div>
                 </div>
-                <div class="meta-item">
-                    <span class="meta-icon">📍</span>
-                    <span>Marwadi University, Rajkot</span>
+                <div class="banner-buttons">
+                    <a href="https://forms.typeform.com/to/ABC123" target="_blank" class="btn-primary">Register</a>
+                    <a href="#cfp" class="btn-secondary">Call for Papers</a>
+                </div>
+                <div class="banner-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Days</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Tracks</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Participants</div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-buttons">
-                <a href="#" class="btn-primary">Register</a>
-                <a href="#call-for-papers" class="btn-secondary">Call for Papers</a>
+            <div class="banner-image">
+                <img src="DSC04822.jpeg" alt="International Youth Day Conference">
             </div>
-        </div>
-        <div class="hero-right">
-            <img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?w=1200" alt="Conference" class="hero-image">
-            <div class="hero-overlay"></div>
         </div>
     </section>
     
-    <!-- Floating Stats -->
-    <div class="floating-stats">
-        <div class="stat-card">
-            <div class="stat-number">2</div>
-            <div class="stat-label">Days</div>
+    <!-- Hosts Section -->
+    <section class="hosts">
+        <div class="host-logo">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <div style="background: #ff8a3d; color: white; padding: 15px 20px; font-weight: bold; font-size: 1.8em;">YIF</div>
+                <div>
+                    <div style="font-size: 1.2em; color: #333; font-weight: 300;">YOUNG INDIA</div>
+                    <div style="background: #5cb85c; color: white; padding: 6px 15px; font-size: 1.3em; margin-top: 5px;">FOUNDATION</div>
+                </div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">6</div>
-            <div class="stat-label">Tracks</div>
+        <div class="host-logo">
+            <img src="MU_LOGO_BROWN.png" alt="Marwadi University" style="max-height: 60px; width: auto;">
         </div>
-        <div class="stat-card">
-            <div class="stat-number">100+</div>
-            <div class="stat-label">Participants</div>
-        </div>
-    </div>
-    
+    </section>
+
     <!-- Overview Section -->
-    <section id="overview" class="overview-section">
-        <div class="section-header">
-            <div class="section-subtitle">Conference Overview</div>
-            <h2 class="section-title">Where Youth Meets Power and Research Drives Real Change</h2>
-            <p class="section-description">
-                A transformative gathering connecting youth leaders, scholars, and policymakers to reshape democratic participation
-            </p>
-        </div>
-        
-        <div class="overview-grid">
-            <div class="overview-card">
-                <div class="card-icon">🌍</div>
-                <h3 class="card-title">Global Perspectives</h3>
-                <p class="card-text">
-                    Bringing together voices from the Global South and beyond to examine democratic structures and youth engagement
-                </p>
+    <section id="overview" class="section">
+        <div class="container">
+            <h2>Conference Overview</h2>
+            <div class="overview-content">
+                <p>Across the world, young people are reshaping democracy—from climate protests and electoral reform to digital rights and grassroots resistance. Yet despite their energy and numbers, youth remain underrepresented in parliaments, policy spaces, and international forums. The Youth & Democracy Conference challenges this status quo.</p>
+                
+                <p>Hosted at Marwadi University by the Centre for Youth Policy (CYP) and the Young India Foundation (YIF), this two-day international convening brings together youth leaders, scholars, policymakers, and practitioners from the Global South and beyond to examine how young people engage with democratic structures and how democracies must adapt to fully include, represent, and empower them.</p>
+                
+                <p>Designed as academic in form and participatory in spirit, the conference pairs daytime paper presentations, research panels, and closed-door policy roundtables with evening keynotes, cultural showcases, town halls, and intergenerational dialogues that connect evidence with public imagination.</p>
             </div>
-            <div class="overview-card">
-                <div class="card-icon">🎓</div>
-                <h3 class="card-title">Academic Excellence</h3>
-                <p class="card-text">
-                    Rigorous research presentations paired with policy roundtables connecting evidence with practice
-                </p>
-            </div>
-            <div class="overview-card">
-                <div class="card-icon">🤝</div>
-                <h3 class="card-title">Participatory Spirit</h3>
-                <p class="card-text">
-                    Evening keynotes, cultural showcases, and intergenerational dialogues that inspire action
-                </p>
-            </div>
-        </div>
-        
-        <div class="overview-content">
-            <p class="overview-text">
-                Across the world, <strong>young people are reshaping democracy</strong>—from climate protests and electoral reform to digital rights and grassroots resistance. Yet despite their energy and numbers, youth remain underrepresented in parliaments, policy spaces, and international forums. The Youth & Democracy Conference challenges this status quo.
-            </p>
-            <p class="overview-text">
-                Hosted at Marwadi University by the <strong>Centre for Youth Policy (CYP)</strong> and the <strong>Young India Foundation (YIF)</strong>, this two-day international convening brings together youth leaders, scholars, policymakers, and practitioners from the Global South and beyond to examine how young people engage with democratic structures and how democracies must adapt to fully include, represent, and empower them.
-            </p>
-            <p class="overview-text">
-                Designed as <strong>academic in form and participatory in spirit</strong>, the conference pairs daytime paper presentations, research panels, and closed-door policy roundtables with evening keynotes, cultural showcases, town halls, and intergenerational dialogues that connect evidence with public imagination. Inspired by global models, from European youth democracy forums to resilience summits, this gathering responds to the urgency of our time: democratic backsliding, youth disillusionment, and a rapidly evolving digital public sphere demand new ideas, new leadership, and new alliances.
-            </p>
         </div>
     </section>
     
-    <!-- Hosted By Section -->
-    <section class="sponsors-section">
-        <h3 class="sponsors-title">Hosted By</h3>
-        <div class="sponsors-grid">
-            <div class="sponsor-logo">
-                <div class="yif-container">
-                    <div class="yif-box">YIF</div>
-                    <div class="yif-text">
-                        <span class="young-india">YOUNG INDIA</span>
-                        <span class="foundation">FOUNDATION</span>
+    <!-- Tracks Section -->
+    <section id="tracks" class="section">
+        <div class="container">
+            <h2>Conference Tracks</h2>
+            <div class="tracks-intro">
+                <p>Explore four key thematic areas where youth engagement meets democratic transformation.</p>
+            </div>
+            <div class="tracks-grid">
+                <div class="track-card">
+                    <div class="track-image" style="background-image: linear-gradient(rgba(30, 58, 138, 0.7), rgba(30, 58, 138, 0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%231e3a8a" width="400" height="300"/><text x="200" y="150" font-family="Arial" font-size="60" fill="white" text-anchor="middle">🏛️</text></svg>');">
+                    </div>
+                    <div class="track-content">
+                        <h3>Democratic Participation & Representation</h3>
+                        <ul>
+                            <li>Lowering the age of candidacy</li>
+                            <li>Youth quotas: promise, pitfalls, practice</li>
+                            <li>Entry barriers: finance, caste, gender</li>
+                            <li>First-time voters & electoral literacy</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="track-card">
+                    <div class="track-image" style="background-image: linear-gradient(rgba(59, 130, 246, 0.7), rgba(59, 130, 246, 0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%233b82f6" width="400" height="300"/><text x="200" y="150" font-family="Arial" font-size="60" fill="white" text-anchor="middle">💻</text></svg>');">
+                    </div>
+                    <div class="track-content">
+                        <h3>Civic Tech, Media & Digital Sphere</h3>
+                        <ul>
+                            <li>Social media & youth political identity</li>
+                            <li>Algorithmic bias & platform accountability</li>
+                            <li>Digital tools for voter mobilization</li>
+                            <li>Disinformation & polarization</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="track-card">
+                    <div class="track-image" style="background-image: linear-gradient(rgba(96, 165, 250, 0.7), rgba(96, 165, 250, 0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%2360a5fa" width="400" height="300"/><text x="200" y="150" font-family="Arial" font-size="60" fill="white" text-anchor="middle">🌍</text></svg>');">
+                    </div>
+                    <div class="track-content">
+                        <h3>Global Perspectives</h3>
+                        <ul>
+                            <li>Global South youth movements</li>
+                            <li>UN youth forums: engagement vs tokenism</li>
+                            <li>Democratic backsliding & resistance</li>
+                            <li>Diaspora & transnational participation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="track-card">
+                    <div class="track-image" style="background-image: linear-gradient(rgba(147, 197, 253, 0.7), rgba(147, 197, 253, 0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%2393c5fd" width="400" height="300"/><text x="200" y="150" font-family="Arial" font-size="60" fill="white" text-anchor="middle">🎓</text></svg>');">
+                    </div>
+                    <div class="track-content">
+                        <h3>Institutions & Education</h3>
+                        <ul>
+                            <li>Civic education: curriculum vs culture</li>
+                            <li>Youth councils & local governance</li>
+                            <li>Youth-friendly administrations</li>
+                            <li>Public service as a career path</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="sponsor-logo">
-                <div class="marwadi-container">
-                    <div class="marwadi-shield">M</div>
-                    <div class="marwadi-text">
-                        <div class="marwadi-name">Marwadi</div>
-                        <div class="marwadi-subtitle">University</div>
+        </div>
+    </section>
+    
+    <!-- Call for Papers Section -->
+    <section id="call-for-papers" class="section">
+        <div class="container">
+            <h2>Call for Papers</h2>
+            <div class="cfp-content">
+                <div class="cfp-grid">
+                    <div class="cfp-item">
+                        <h3>Abstracts</h3>
+                        <p>250–300 words including research question, methodology, findings/expected contribution, and policy relevance.</p>
                     </div>
-                    <div class="naac-badge">A+</div>
+                    <div class="cfp-item">
+                        <h3>Keywords</h3>
+                        <p>3-5 keywords aligned with conference tracks.</p>
+                    </div>
+                    <div class="cfp-item">
+                        <h3>Author Details</h3>
+                        <p>Full names, institutional affiliations, and contact information.</p>
+                    </div>
+                </div>
+                <div class="cfp-buttons">
+                    <a href="https://forms.typeform.com/to/SUBMIT123" target="_blank" class="btn">Submit Abstract</a>
+                    <a href="https://forms.typeform.com/to/TEMPLATE123" target="_blank" class="btn btn-outline">Download Template</a>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Call for Papers -->
-    <section id="call-for-papers" class="cfp-section">
-        <div class="section-header">
-            <div class="section-subtitle">Submit Your Research</div>
-            <h2 class="section-title">Call for Papers</h2>
-            <p class="section-description">
-                We invite scholars, researchers, and practitioners to submit their work
-            </p>
-        </div>
-        
-        <div class="cfp-grid">
-            <div class="cfp-card">
-                <h3>Abstracts</h3>
-                <p>250–300 words—question, method, findings/expected contribution, policy relevance.</p>
-            </div>
-            <div class="cfp-card">
-                <h3>Keywords</h3>
-                <p>3-5 aligned with conference tracks.</p>
-            </div>
-            <div class="cfp-card">
-                <h3>Author Details</h3>
-                <p>Names, affiliations, and contact information.</p>
-            </div>
-        </div>
-        
-        <div class="cfp-buttons">
-            <a href="#" class="btn-primary">Submit Abstract</a>
-            <a href="#" class="btn-secondary">Download Template</a>
-        </div>
-    </section>
-    
-    <!-- Tracks -->
-    <section id="tracks" class="tracks-section">
-        <div class="section-header">
-            <div class="section-subtitle">Research Areas</div>
-            <h2 class="section-title">Conference Tracks</h2>
-            <p class="section-description">
-                Six thematic tracks exploring the intersection of youth and democracy
-            </p>
-        </div>
-        
-        <div class="tracks-container">
-            <div class="tracks-wheel">
-                <div class="track-hex" onclick="showTrackDetails(1)">
-                    <div class="track-icon">🏛️</div>
-                    <div class="track-label">Democratic Participation</div>
-                </div>
-                <div class="track-hex" onclick="showTrackDetails(2)">
-                    <div class="track-icon">💻</div>
-                    <div class="track-label">Civic Tech & Media</div>
-                </div>
-                <div class="track-hex" onclick="showTrackDetails(3)">
-                    <div class="track-icon">🌍</div>
-                    <div class="track-label">Global Perspectives</div>
-                </div>
-                <div class="track-hex" onclick="showTrackDetails(4)">
-                    <div class="track-icon">🎓</div>
-                    <div class="track-label">Education & Institutions</div>
-                </div>
-                <div class="track-hex" onclick="showTrackDetails(5)">
-                    <div class="track-icon">📊</div>
-                    <div class="track-label">Research Methods</div>
-                </div>
-                <div class="track-hex" onclick="showTrackDetails(6)">
-                    <div class="track-icon">🤝</div>
-                    <div class="track-label">Youth Movements</div>
-                </div>
-            </div>
-            
-            <div class="track-details" id="track-details-1">
-                <h4>Democratic Participation & Representation</h4>
-                <ul>
-                    <li>Lowering the age of candidacy</li>
-                    <li>Youth quotas: promise, pitfalls, practice</li>
-                    <li>Entry barriers: finance, caste, gender, access</li>
-                    <li>First-time voters & electoral literacy</li>
-                </ul>
-            </div>
-            
-            <div class="track-details" id="track-details-2">
-                <h4>Civic Tech, Media & the Digital Public Sphere</h4>
-                <ul>
-                    <li>Social media & youth political identity</li>
-                    <li>Algorithmic bias, activism & platform accountability</li>
-                    <li>Digital tools for voter mobilization</li>
-                    <li>Disinformation & polarization</li>
-                </ul>
-            </div>
-            
-            <div class="track-details" id="track-details-3">
-                <h4>Comparative & Global Perspectives</h4>
-                <ul>
-                    <li>Global South youth movements</li>
-                    <li>UN & global youth forums: engagement vs tokenism</li>
-                    <li>Democratic backsliding & youth resistance</li>
-                    <li>Diaspora & transnational participation</li>
-                </ul>
-            </div>
-            
-            <div class="track-details" id="track-details-4">
-                <h4>Institutions, Education & State Capacity</h4>
-                <ul>
-                    <li>Civic education: curriculum vs culture</li>
-                    <li>Youth councils & local governance</li>
-                    <li>Youth-friendly administrations</li>
-                    <li>Public service as a youth career path</li>
-                </ul>
-            </div>
-
-            <div class="track-details" id="track-details-5">
-                <h4>Research Methods & Youth Studies</h4>
-                <ul>
-                    <li>Participatory action research with youth</li>
-                    <li>Quantitative approaches to youth political behavior</li>
-                    <li>Ethnographic methods in youth activism studies</li>
-                    <li>Mixed-methods approaches to democracy research</li>
-                </ul>
-            </div>
-
-            <div class="track-details" id="track-details-6">
-                <h4>Youth Movements & Social Change</h4>
-                <ul>
-                    <li>Climate activism & generational justice</li>
-                    <li>Student movements & campus politics</li>
-                    <li>Intersectionality in youth organizing</li>
-                    <li>Coalition building across movements</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Schedule -->
-    <section id="schedule" class="schedule-section">
-        <div class="section-header">
-            <div class="section-subtitle">Event Schedule</div>
-            <h2 class="section-title">Conference Schedule</h2>
-            <p class="section-description">
-                Two days of presentations, panels, and networking
-            </p>
-        </div>
-        
-        <div class="schedule-timeline" style="position: relative; padding: 40px 0;">
-            <div class="timeline-line"></div>
-            
-            <div class="timeline-item">
-                <div class="timeline-badge">DAY 1</div>
-                <div class="timeline-content">
-                    <h3>Wednesday, January 8</h3>
-                    <p class="day-subtitle">Conference & Presentation Panels</p>
-                    
+    <!-- Schedule Section -->
+    <section id="schedule" class="section">
+        <div class="container">
+            <h2>Conference Schedule</h2>
+            <div class="schedule-timeline">
+                <!-- Day 1 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <h3>Day 1 — Wednesday, January 8</h3>
+                        <p>Conference & Presentation Panels</p>
+                    </div>
                     <ul class="schedule-list">
                         <li>
                             <span class="time-slot">10:00–10:30</span>
@@ -1500,57 +1224,56 @@
                         <li>
                             <span class="time-slot">10:30–11:15</span>
                             <div class="session-details">
-                                <h4>Opening Keynote Session</h4>
+                                <h4>Keynote Session</h4>
                             </div>
                         </li>
                         <li>
-                            <span class="time-slot">11:15–12:15</span>
+                            <span class="time-slot">11:00–12:00</span>
                             <div class="session-details">
                                 <h4>Parallel Paper Panels A</h4>
                                 <ul class="session-tracks">
                                     <li>Track 1: Democratic Participation & Representation</li>
-                                    <li>Track 2: Civic Tech, Media & the Digital Public Sphere</li>
+                                    <li>Track 2: Civic Tech, Media & Digital Sphere</li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <span class="time-slot">12:15–13:15</span>
+                            <span class="time-slot">12:00–13:00</span>
                             <div class="session-details">
                                 <h4>Lunch Break</h4>
                             </div>
                         </li>
                         <li>
-                            <span class="time-slot">13:15–14:15</span>
+                            <span class="time-slot">13:00–14:00</span>
                             <div class="session-details">
                                 <h4>Parallel Paper Panels B</h4>
                                 <ul class="session-tracks">
-                                    <li>Track 3: Comparative & Global Perspectives</li>
-                                    <li>Track 4: Institutions, Education & State Capacity</li>
+                                    <li>Track 3: Global Perspectives</li>
+                                    <li>Track 4: Institutions & Education</li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <span class="time-slot">14:30–15:15</span>
+                            <span class="time-slot">14:15–15:00</span>
                             <div class="session-details">
                                 <h4>Fireside Chat</h4>
                             </div>
                         </li>
                         <li>
-                            <span class="time-slot">15:15–16:00</span>
+                            <span class="time-slot">15:00–15:30</span>
                             <div class="session-details">
                                 <h4>Cultural Showcase & Reception</h4>
                             </div>
                         </li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-badge">DAY 2</div>
-                <div class="timeline-content">
-                    <h3>Thursday, January 9</h3>
-                    <p class="day-subtitle">Bigger Rooms & Bigger Discussions</p>
-                    
+                
+                <!-- Day 2 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <h3>Day 2 — Thursday, January 9</h3>
+                        <p>Bigger Rooms & Bigger Discussions</p>
+                    </div>
                     <ul class="schedule-list">
                         <li>
                             <span class="time-slot">10:00–10:45</span>
@@ -1576,12 +1299,57 @@
         </div>
     </section>
     
+    <!-- Sponsors Section -->
+    <section class="sponsors-bottom">
+        <div class="container">
+            <h3 class="sponsors-title">Hosted By</h3>
+            <div class="sponsors-grid">
+                <div class="sponsor-logo">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="background: #ff8a3d; color: white; padding: 15px 20px; font-weight: bold; font-size: 1.8em;">YIF</div>
+                        <div>
+                            <div style="font-size: 1.2em; color: #333; font-weight: 300;">YOUNG INDIA</div>
+                            <div style="background: #5cb85c; color: white; padding: 6px 15px; font-size: 1.3em; margin-top: 5px;">FOUNDATION</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sponsor-logo">
+                    <img src="MU_LOGO_BROWN.png" alt="Marwadi University" style="max-height: 60px; width: auto;">
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
-            <div class="footer-about">
-                <h3>About the Conference</h3>
-                <p>An academic convening connecting research with practice to strengthen youth representation and participation across the Global South and beyond.</p>
+            <div class="footer-section">
+                <h3>About CYP</h3>
+                <p>Centre for Youth Policy is dedicated to strengthening youth representation and participation across the Global South and beyond through research, advocacy, and capacity building.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Details</h3>
+                <p>Email: <a href="mailto:conference@cyp.org">conference@cyp.org</a></p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Address: Marwadi University<br>Rajkot, Gujarat 360003</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="https://www.cyp.org" target="_blank">CYP Website</a></li>
+                    <li><a href="https://www.yif.org" target="_blank">Young India Foundation</a></li>
+                    <li><a href="https://www.marwadiuniversity.ac.in" target="_blank">Marwadi University</a></li>
+                    <li><a href="https://forms.typeform.com/to/ABC123" target="_blank">Registration</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://twitter.com/cyp" target="_blank">Twitter</a></li>
+                    <li><a href="https://linkedin.com/company/cyp" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://facebook.com/cyp" target="_blank">Facebook</a></li>
+                    <li><a href="https://instagram.com/cyp" target="_blank">Instagram</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1590,17 +1358,7 @@
     </footer>
     
     <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Smooth scrolling
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1614,45 +1372,25 @@
             });
         });
         
-        // Track details
-        let currentTrack = null;
-        function showTrackDetails(trackNum) {
-            document.querySelectorAll('.track-details').forEach(detail => {
-                detail.classList.remove('active');
-            });
+        // Highlight active section in navigation
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('.section');
             
-            if (currentTrack === trackNum) {
-                currentTrack = null;
-                return;
-            }
-            
-            const trackDetail = document.getElementById('track-details-' + trackNum);
-            if (trackDetail) {
-                trackDetail.classList.add('active');
-                currentTrack = trackNum;
-            }
-        }
-        
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
                 }
             });
-        }, observerOptions);
-        
-        document.querySelectorAll('.overview-card, .cfp-card, .stat-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
+            
+            document.querySelectorAll('nav a').forEach(link => {
+                link.style.color = '#333';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = '#1e3a8a';
+                }
+            });
         });
     </script>
 </body>
