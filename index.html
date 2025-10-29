@@ -88,7 +88,7 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 0;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
@@ -97,50 +97,9 @@
             transform: scale(1.05);
         }
         
-        .logo-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: inline-block;
-            background: linear-gradient(135deg, #0056b3, #4da3ff);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
-        }
-        
-        .logo-circle::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-        }
-        
-        .logo:hover .logo-circle::after {
-            animation: shine 0.5s ease;
-        }
-        
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-            }
-        }
-        
-        .logo-text {
-            font-size: 30px;
-            font-weight: bold;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #0056b3 0%, #4da3ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(0, 86, 179, 0.1);
+        .logo img {
+            height: 45px;
+            width: auto;
         }
         
         .register-btn {
@@ -492,16 +451,6 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
             background-size: 50px 50px;
-            animation: moveGrid 20s linear infinite;
-        }
-        
-        @keyframes moveGrid {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(50px, 50px);
-            }
         }
         
         .hero-pattern {
@@ -513,70 +462,21 @@
         }
         
         .hero-graphic {
-            width: 80%;
-            max-width: 500px;
+            width: 100%;
+            height: 100%;
             position: relative;
             z-index: 1;
-        }
-        
-        .graphic-circle {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: morph 8s ease-in-out infinite;
-            box-shadow: 
-                0 0 80px rgba(255,255,255,0.5),
-                inset 0 0 50px rgba(255,255,255,0.2);
         }
         
-        @keyframes morph {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-                border-radius: 50%;
-            }
-            25% {
-                transform: scale(1.05) rotate(90deg);
-                border-radius: 45%;
-            }
-            50% {
-                transform: scale(1) rotate(180deg);
-                border-radius: 50%;
-            }
-            75% {
-                transform: scale(1.05) rotate(270deg);
-                border-radius: 45%;
-            }
-        }
-        
-        .graphic-inner {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4em;
-            color: white;
-            font-weight: bold;
-            text-shadow: 0 0 30px rgba(255,255,255,0.5);
-            animation: innerPulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes innerPulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(0.95);
-            }
+        .hero-image {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
         
         /* Section transitions */
@@ -861,59 +761,66 @@
         
         .track-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1400px;
             margin: 40px auto;
+            perspective: 1000px;
         }
         
         .track-card {
-            background: linear-gradient(135deg, #0056b3 0%, #4da3ff 100%);
-            color: white;
-            padding: 30px;
+            background: white;
+            color: #1a1a1a;
+            padding: 40px 30px;
             border-radius: 20px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(0, 86, 179, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 86, 179, 0.1);
             position: relative;
             overflow: hidden;
+            border: 2px solid rgba(0, 86, 179, 0.1);
+            transform-style: preserve-3d;
+            will-change: transform;
         }
         
         .track-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            transition: all 0.5s ease;
-            opacity: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0056b3, #4da3ff);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
         
         .track-card:hover::before {
-            opacity: 1;
-            transform: scale(1.2);
+            transform: scaleX(1);
         }
         
         .track-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 50px rgba(0, 86, 179, 0.35);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 86, 179, 0.25);
+            border-color: #0056b3;
         }
         
         .track-number {
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #0056b3 0%, #4da3ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             opacity: 0.9;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .track-title {
-            font-size: 1.15em;
+            font-size: 1.2em;
             font-weight: 600;
-            line-height: 1.4;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            line-height: 1.5;
+            color: #333;
         }
         
         .track-details {
@@ -1320,20 +1227,30 @@
             z-index: 1;
         }
         
-        .host-logo {
-            width: 160px;
-            height: 160px;
-            background: white;
-            border-radius: 50%;
-            margin: 0 auto 35px;
+        .host-logos {
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: #0056b3;
-            font-size: 2.5em;
-            font-weight: bold;
+            align-items: center;
+            gap: 40px;
+            margin: 0 auto 35px;
+            flex-wrap: wrap;
+        }
+        
+        .host-logo {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 30px;
             box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-            animation: float 6s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+        
+        .host-logo:hover {
+            transform: translateY(-10px);
+        }
+        
+        .host-logo img {
+            height: 80px;
+            width: auto;
         }
         
         .host-info h3 {
@@ -1504,7 +1421,7 @@
             }
             
             .track-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .cfp-buttons {
@@ -1547,8 +1464,7 @@
     <header class="header">
         <div class="logo-section">
             <div class="logo">
-                <span class="logo-circle" style="background: linear-gradient(135deg, #0056b3, #4da3ff);"></span>
-                <span class="logo-text">CYP</span>
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 520'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%231e1a3d;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cg%3E%3Cpath class='cls-1' d='M290,150v220'/%3E%3Cpath class='cls-1' d='M290,150l42.4,212.1'/%3E%3Cpath class='cls-1' d='M290,150l84.9,200.5'/%3E%3Cpath class='cls-1' d='M290,150l127.3,185.4'/%3E%3Cpath class='cls-1' d='M290,150l169.7,166.8'/%3E%3Cpath class='cls-1' d='M290,150l212.1,145.4'/%3E%3Cpath class='cls-1' d='M290,150l-42.4,212.1'/%3E%3Cpath class='cls-1' d='M290,150l-84.9,200.5'/%3E%3Cpath class='cls-1' d='M290,150l-127.3,185.4'/%3E%3Cpath class='cls-1' d='M290,150l-169.7,166.8'/%3E%3Cpath class='cls-1' d='M290,150l-212.1,145.4'/%3E%3C/g%3E%3Cline class='cls-1' x1='580' y1='100' x2='580' y2='420' stroke='%231e1a3d' stroke-width='4'/%3E%3C/g%3E%3Cg%3E%3Ctext x='660' y='200' font-family='Arial Black, Arial' font-weight='900' font-size='28' fill='%231e1a3d'%3EYOUNG INDIA FOUNDATION'S%3C/text%3E%3Ctext x='660' y='280' font-family='Arial Black, Arial' font-weight='900' font-size='95' fill='%231e1a3d'%3ECENTRE for%3C/text%3E%3Ctext x='660' y='390' font-family='Arial Black, Arial' font-weight='900' font-size='95' fill='%231e1a3d'%3EYOUTH POLICY%3C/text%3E%3C/g%3E%3C/svg%3E" alt="Centre for Youth Policy">
             </div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/viewform" 
                target="_blank" class="register-btn">Register Now</a>
@@ -1594,9 +1510,7 @@
         <div class="hero-right">
             <div class="hero-pattern"></div>
             <div class="hero-graphic">
-                <div class="graphic-circle">
-                    <div class="graphic-inner">Y&D</div>
-                </div>
+                <img src="https://drive.google.com/uc?export=view&id=1C4TA-vGwsvLh8aKIxCUVr4gQw3sZDYWB" alt="International Youth Day Conference" class="hero-image">
             </div>
         </div>
     </section>
@@ -1889,15 +1803,24 @@
         </div>
         
         <div class="host-info">
-            <div class="host-logo">CYP</div>
-            <h3>Centre for Youth Policy</h3>
+            <div class="host-logos">
+                <div class="host-logo">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 520'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%231e1a3d;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cg%3E%3Cpath class='cls-1' d='M290,150v220'/%3E%3Cpath class='cls-1' d='M290,150l42.4,212.1'/%3E%3Cpath class='cls-1' d='M290,150l84.9,200.5'/%3E%3Cpath class='cls-1' d='M290,150l127.3,185.4'/%3E%3Cpath class='cls-1' d='M290,150l169.7,166.8'/%3E%3Cpath class='cls-1' d='M290,150l212.1,145.4'/%3E%3Cpath class='cls-1' d='M290,150l-42.4,212.1'/%3E%3Cpath class='cls-1' d='M290,150l-84.9,200.5'/%3E%3Cpath class='cls-1' d='M290,150l-127.3,185.4'/%3E%3Cpath class='cls-1' d='M290,150l-169.7,166.8'/%3E%3Cpath class='cls-1' d='M290,150l-212.1,145.4'/%3E%3C/g%3E%3Cline class='cls-1' x1='580' y1='100' x2='580' y2='420' stroke='%231e1a3d' stroke-width='4'/%3E%3C/g%3E%3Cg%3E%3Ctext x='660' y='200' font-family='Arial Black, Arial' font-weight='900' font-size='28' fill='%231e1a3d'%3EYOUNG INDIA FOUNDATION'S%3C/text%3E%3Ctext x='660' y='280' font-family='Arial Black, Arial' font-weight='900' font-size='95' fill='%231e1a3d'%3ECENTRE for%3C/text%3E%3Ctext x='660' y='390' font-family='Arial Black, Arial' font-weight='900' font-size='95' fill='%231e1a3d'%3EYOUTH POLICY%3C/text%3E%3C/g%3E%3C/svg%3E" alt="Centre for Youth Policy">
+                </div>
+                <div class="host-logo">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 650 200'%3E%3Cdefs%3E%3Cstyle%3E.mu-shield%7Bfill:%2335b5c5;stroke:%2335b5c5;stroke-width:2;%7D.mu-m%7Bfill:white;%7D.mu-text%7Bfill:%23a89968;font-family:Arial,sans-serif;font-weight:bold;%7D.naac%7Bfill:%23000;font-family:Arial,sans-serif;font-weight:bold;%7D.badge-outer%7Bfill:%23d4af37;%7D.badge-inner%7Bfill:%238b0000;%7D.badge-text%7Bfill:white;font-family:Arial,sans-serif;font-weight:bold;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class='mu-shield' d='M60,30 L60,90 C60,120 80,140 100,150 C120,140 140,120 140,90 L140,30 C120,25 80,25 60,30 Z'/%3E%3Cpath class='mu-m' d='M75,50 L85,80 L100,60 L115,80 L125,50 L118,50 L110,70 L100,55 L90,70 L82,50 Z'/%3E%3Ctext class='mu-text' x='160' y='75' font-size='42'%3EMarwadi%3C/text%3E%3Ctext class='mu-text' x='160' y='110' font-size='42'%3EUniversity%3C/text%3E%3Ctext x='160' y='135' font-size='16' fill='%23666'%3EMarwadi Chandarana Group%3C/text%3E%3C/g%3E%3Cg transform='translate(510,20)'%3E%3Cline x1='0' y1='0' x2='0' y2='150' stroke='%23666' stroke-width='2'/%3E%3C/g%3E%3Cg transform='translate(550,30)'%3E%3Ctext class='naac' x='0' y='15' font-size='20'%3ENAAC%3C/text%3E%3Cpath class='badge-outer' d='M40,35 L48,28 L56,28 L64,35 L67,43 L64,51 L56,58 L48,58 L40,51 L37,43 Z'/%3E%3Cpath class='badge-outer' d='M50,25 L54,25 L58,28 L58,32 L54,35 L50,35 L46,32 L46,28 Z'/%3E%3Cpath class='badge-outer' d='M50,51 L54,51 L58,54 L58,58 L54,61 L50,61 L46,58 L46,54 Z'/%3E%3Cpath class='badge-outer' d='M36,35 L40,35 L40,43 L40,51 L36,51 L32,48 L32,38 Z'/%3E%3Cpath class='badge-outer' d='M64,35 L68,35 L72,38 L72,48 L68,51 L64,51 L64,43 Z'/%3E%3Ccircle class='badge-inner' cx='52' cy='43' r='18'/%3E%3Ctext class='badge-text' x='38' y='52' font-size='22'%3EA+%3C/text%3E%3C/g%3E%3C/svg%3E" alt="Marwadi University">
+                </div>
+            </div>
+            <h3>Hosted By</h3>
             <p class="host-description">
-                The Centre for Youth Policy is a leading research institution dedicated to advancing youth participation in democratic governance. 
-                We work at the intersection of research, policy, and practice to strengthen youth representation in political processes.
+                This conference is jointly hosted by the Young India Foundation's Centre for Youth Policy and Marwadi University. 
+                Together, we are committed to advancing youth participation in democratic governance through research, policy, and practice.
             </p>
             <p class="host-description">
-                Learn more about our work at 
-                <a href="https://youthpolicy.org" target="_blank" class="host-link">www.youthpolicy.org</a>
+                <strong>Young India Foundation's Centre for Youth Policy</strong> is a leading research institution dedicated to strengthening youth representation in political processes.
+            </p>
+            <p class="host-description">
+                <strong>Marwadi University</strong> is a NAAC A+ accredited institution fostering academic excellence and innovation.
             </p>
         </div>
     </section>
@@ -1949,8 +1872,9 @@
             });
         });
         
-        // Track details
+        // Track details and parallax hover effect
         let currentTrack = null;
+        
         function showTrackDetails(trackNum) {
             document.querySelectorAll('.track-details').forEach(detail => {
                 detail.classList.remove('active');
@@ -1967,6 +1891,27 @@
                 currentTrack = trackNum;
             }
         }
+        
+        // Parallax hover effect for track cards
+        document.querySelectorAll('.track-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `translateY(-15px) scale(1.02) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        });
         
         // Intersection Observer for animations
         const observerOptions = {
